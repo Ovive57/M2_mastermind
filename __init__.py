@@ -4,6 +4,6 @@ import math
 
 __version__ = "0.1"
 
-from . import subpkgA
+from . import build
 
-from . import subpkgB
+from . import partie
