@@ -1,6 +1,4 @@
 import sys
-import math
-
 
 __version__ = "0.1"
 

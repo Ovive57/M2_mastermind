@@ -2,7 +2,7 @@ import sys
 
 version = 'A1'
 
-class C_billes_reponse(self):
+class C_billes_reponse:
     
     def __init__(self):
         """ 

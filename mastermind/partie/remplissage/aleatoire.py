@@ -1,7 +1,6 @@
 import sys
-import math
 import random
-from ... import build.billes.py as billes
+from ...build import billes
 
 """
 retourne une matrice de 4 couleurs alétoires
