@@ -8,6 +8,8 @@ class C_billes_reponse:
         """ 
         Billes ayant 2 choix de couleurs différentes:
         Noir (N) , Blanc (B)
+        N => bon endroit bonne couleur
+        B => que la couleur de bonne
         """
         
         self.B = "Blanc"

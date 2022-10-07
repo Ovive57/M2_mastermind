@@ -1,0 +1,16 @@
+rich
+
+[docs]
+ipython
+nbsphinx
+
+[mcmc]
+corner
+emcee
+
+[plot]
+mpld3
+
+[tests]
+coverage
+pytest
