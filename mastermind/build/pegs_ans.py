@@ -18,5 +18,5 @@ class PegsAns:
         
         self.B = "[bold black]\u25CF[/bold black]"
         self.W = "[bold white]\u25CF[/bold white]"
-        self.R = "."
+        self.N = "."
         

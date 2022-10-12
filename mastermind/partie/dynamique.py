@@ -16,11 +16,12 @@ def dynamique():
         print("ROUND ", n)
         essai = entry.entry()
         matrice_reponse = comparaison.comparaison(reponse, essai)
+        print("The key pegs are:")
         print(' '.join(matrice_reponse))
         if matrice_reponse == [repon.N]*4:
             gagne = True
-            print("C'est gagné!")
+            print("[bold red]\WIN ![\bold red]")
             break
         n += 1
     if (n==13):
-        print("GAME OVER")
+        print("[bold red]GAME OVER ![/bold red]")

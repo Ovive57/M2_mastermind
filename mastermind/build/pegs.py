@@ -21,4 +21,4 @@ class Pegs:
         self.p = "P"
         self.p_c = "[bold purple]\u25CF[/bold purple]"
         self.o = "O"
-        self.o_c = "[bold orange]\u25CF[/bold orange]"
+        self.o_c = "[bold orange3]\u25CF[/bold orange3]"
