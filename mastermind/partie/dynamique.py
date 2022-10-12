@@ -21,4 +21,5 @@ def dynamique():
             print("C'est gagné!")
             break
         n += 1
-    print("GAME OVER")
+    if (n==13):
+        print("GAME OVER")
