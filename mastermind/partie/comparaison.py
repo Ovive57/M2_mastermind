@@ -1,26 +1,27 @@
 import sys
-from ..build import billes_reponses
+from ..build import pegs_ans
 from rich import print
 import random
 
 def comparaison(A, B):
     """
-    On compare la sequence donnée par l'ordinateur (A) i.e la reponse à trouver
-    avec la sequence donnée par l'utilisateur.
-
-    Returns:
-        list : avec une sequence de 4 couleurs telles que:
-            noir si l'utilisateur a trouvé une couleur dans le bon endroit.
-            blanc si l'utilisateur a trouvé une couleur mais pas dans le bon endroit.
-            . si l'utilisateur a mis des couleurs qui ne sont pas dans la sequence de l'ordinateur.
-    """
-    repon = billes_reponses.C_billes_reponse()
-    bl = [i for i,j in zip(A,B) if i==j] # Bon endroit et couleur
-    wh_bl = list(set(A)&set(B)) # Bonne couleur
-    wh = len(wh_bl) - len(bl)
-    nul = len(A) - len(wh_bl)
+    Comparation between the computer sequence (A) i.e the answer to find
+    and the user sequence (B).
     
-    sol = [repon.N]*len(bl)+[repon.B]*wh+[repon.R]*nul
+    Returns:
+        list : with a 4-colors sequence:
+            black if the user find a color in the right place
+            white if the user find a color but not in the right place
+            . if the color chosen by the user is not in the computer sequence.
+    """
+    
+    repon = pegs_ans.PegsAns()
+    bl = [i for i,j in zip(A,B) if i==j] # Right place right color.
+    wh_bl = list(set(A)&set(B)) # Right color
+    wh = len(wh_bl) - len(bl) # Right color but not right place
+    nul = len(A) - len(wh_bl) # Nothing right
+    
+    sol = [repon.B]*len(bl)+[repon.W]*wh+[repon.N]*nul
     random.shuffle(sol)
     
     return sol
