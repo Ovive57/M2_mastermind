@@ -1,4 +1,6 @@
-import sys
-from .partie import dynamique
+from mastermind.partie.dynamique import dynamique
 
-dynamique.dynamique()
+
+print("Exécution du main:")
+cfg = dynamique()
+print(cfg['DEFAULT']['version'])
