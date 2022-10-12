@@ -1,0 +1,16 @@
+Installation notes:
+
+* to install in developer mode::
+
+    $ pip install -e .
+
+* you should not work under `mastermind/mastermind` (e.g. you cannot `import mastermind` because
+  of the confusion between package and module names)
+
+* you can run the main part of the modules using python option `-m`, e.g.::
+
+    $ python -m mastermind
+
+  or::
+
+    In: %run -m mastermind
