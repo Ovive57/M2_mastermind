@@ -13,7 +13,7 @@ class C_billes_reponse:
         B => que la couleur de bonne
         """
         
-        self.B = "Blanc"
-        self.N = "Noir"
+        self.B = "[bold white]\u25CF[/bold white]"
+        self.N = "[bold black]\u25CF[/bold black]"
         self.R = "."
         

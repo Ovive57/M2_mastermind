@@ -5,6 +5,7 @@ from . import comparaison
 from . import rentrer
 from ..build import billes
 from ..build import billes_reponses
+from rich import print
 
 def dynamique():
     n= 1.
@@ -15,7 +16,7 @@ def dynamique():
         print("ROUND ", n)
         essai = rentrer.rentrer()
         matrice_reponse = comparaison.comparaison(reponse, essai)
-        print(matrice_reponse)
+        print(' '.join(matrice_reponse))
         if matrice_reponse == [repon.N]*4:
             gagne = True
             print("C'est gagné!")

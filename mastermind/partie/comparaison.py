@@ -1,6 +1,7 @@
 import sys
 from ..build import billes_reponses
 from rich import print
+import random
 
 def comparaison(A, B):
     """
@@ -19,6 +20,7 @@ def comparaison(A, B):
     wh = len(wh_bl) - len(bl)
     nul = len(A) - len(wh_bl)
     
-    sol = [repon.N]*len(bl)+[repon.B]*len(wh)+[repon.R]*len(nul)
+    sol = [repon.N]*len(bl)+[repon.B]*wh+[repon.R]*nul
+    random.shuffle(sol)
     
     return sol
