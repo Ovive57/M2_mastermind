@@ -15,4 +15,5 @@ class C_billes_reponse:
         
         self.B = "Blanc"
         self.N = "Noir"
+        self.R = "."
         

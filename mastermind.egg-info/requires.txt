@@ -1,16 +1,16 @@
 rich
 
 [docs]
-ipython
 nbsphinx
+ipython
 
 [mcmc]
-corner
 emcee
+corner
 
 [plot]
 mpld3
 
 [tests]
-coverage
 pytest
+coverage
