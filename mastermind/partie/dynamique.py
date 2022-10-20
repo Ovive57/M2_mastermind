@@ -1,9 +1,6 @@
-import sys
-import random
 from . import initialisation
 from . import comparaison
 from . import entry
-from ..build import pegs
 from ..build import pegs_ans
 from rich import print
 

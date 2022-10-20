@@ -1,4 +1,3 @@
-import sys
 from ..build import pegs
 from rich import print
 

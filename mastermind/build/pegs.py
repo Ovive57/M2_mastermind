@@ -1,4 +1,3 @@
-import sys
 
 version = 'A1'
 

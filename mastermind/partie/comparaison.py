@@ -1,6 +1,4 @@
-import sys
 from ..build import pegs_ans
-from rich import print
 import random
 
 def comparaison(A, B):

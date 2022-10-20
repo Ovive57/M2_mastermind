@@ -1,4 +1,3 @@
-import sys
 
 __all__ = ['pegs', 'pegs_ans']
 

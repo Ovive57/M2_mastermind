@@ -1,5 +1,4 @@
-import sys
-from rich import print
+
 
 version = 'A1'
 

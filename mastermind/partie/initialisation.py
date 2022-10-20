@@ -1,4 +1,3 @@
-import sys
 import random
 from ..build import pegs
 
