@@ -20,7 +20,7 @@ def dynamique():
         print(' '.join(matrice_reponse))
         if matrice_reponse == [repon.N]*4:
             gagne = True
-            print("[bold red]\WIN ![\bold red]")
+            print("[bold red]WIN ![\bold red]")
             break
         n += 1
     if (n==13):
