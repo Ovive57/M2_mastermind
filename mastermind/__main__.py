@@ -1,23 +1,27 @@
 """
-c'est le main
+The main program.
 """
 from rich import print as rprint
 from . import dynamique
 
 def main():
     """
-    something
+    Function that calls the class and starts the game.
+    
+    Returns
+    -------
+    Game interface : string prints
     """
-    print("Bienvenue au Jeu du Mastermind !")
+    print("\nWelcome to Mastermind game ! Are you going to be the next Mastermind ? ")
     pegs = dynamique.Pegs()
     round_ = 1.
     win = False
     while (round_<13 and win is not True):
-        print("ROUND ", round_)
+        print("\nROUND ", round_)
         win = pegs.evolve(win)
         round_ +=1
     if round_==13:
-        rprint("[bold red]GAME OVER ![/bold red]")
+        rprint("[bold red]\nGAME OVER ![/bold red]")
 
 
 if __name__ == "__main__":
