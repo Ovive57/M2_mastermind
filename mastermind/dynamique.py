@@ -51,10 +51,10 @@ class Pegs:
         """
         Comparation between the computer sequence i.e the answer to find
         and the user sequence.
-        
+
         Args:
             seq(list): User choice
-        
+
         Returns:
             sol(list): 4-colors list:
                 black: if the user find a color in the right place
@@ -62,17 +62,17 @@ class Pegs:
                 '.': if the color chosen by the user is not in the computer sequence.
         """
         black = list(i for i,j in zip(self.choix,seq) if i==j)
-        
+
         #indices associés:
         index_b = list(index for (index, item) in enumerate(seq) if item==self.choix[index])
-        
+
         #Nouvelles matrices:
         seq2 = list(value for (index, value) in enumerate(seq) if index not in index_b)
         choix2 = list(value for (index, value) in enumerate(self.choix) if index not in index_b)
 
         #liste des valeurs communes: (ne compte pas les doublons)
         vals = list(set(seq2).intersection(choix2))
-        
+
         black = len(black)
         white = len(vals)
         nul = len(seq) - black - white

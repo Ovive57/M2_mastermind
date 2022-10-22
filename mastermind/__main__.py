@@ -7,7 +7,7 @@ from . import dynamique
 def main():
     """
     Function that calls the class and starts the game.
-    
+
     Returns
     -------
     Game interface : string prints
