@@ -18,7 +18,7 @@ def main():
     win = False
     while (round_<13 and win is not True):
         print("\nROUND ", round_)
-        win = pegs.evolve(win)
+        pegs.evolve(win)
         round_ +=1
     if round_==13:
         rprint("[bold red]\nGAME OVER ![/bold red]")
