@@ -20,6 +20,8 @@ class Pegs:
                 'white':'[bold white]\u25CF[/bold white]',
                 'nul':'.'}
 
+    board =[]
+
     def __init__(self):
         """
         Initialitation. Gerenate a 4-list with random colors.
@@ -80,6 +82,17 @@ class Pegs:
         random.shuffle(sol)
         return sol
 
+
+    def fill_board(self, new, answer):
+        """
+        Add the turn in the board and print it
+        """
+        self.board.append([new,answer])
+        print("The current board is:")
+        for round_ in self.board:
+            rprint(' '.join(round_[0]), ' ', ' '.join(round_[1]))
+
+
     def evolve(self, win):
         """
         Function that keep the game runing until you win
@@ -91,12 +104,10 @@ class Pegs:
             win (bool): True if you have everything right
         """
         essai = self.entry()
-        print("\nYou chose:")
+        #print("\nYou chose:")
         color_try = [self.pegs[f'{essai[i]}']for i in range(len(essai))]
-        rprint(' '.join(color_try))
         matrice_reponse = self.comparaison(essai)
-        print("The key pegs are:")
-        rprint(' '.join(matrice_reponse))
+        self.fill_board(color_try, matrice_reponse)
         if matrice_reponse == [self.ans['black']]*4:
             win = True
             rprint("[bold red] \nYOU WIN ! YOU ARE THE MASTERMIND ![/bold red]")

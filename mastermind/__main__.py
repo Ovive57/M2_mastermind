@@ -7,10 +7,6 @@ from . import dynamique
 def main():
     """
     Function that calls the class and starts the game.
-
-    Returns
-    -------
-    Game interface : string prints
     """
     print("\nWelcome to Mastermind game ! Are you going to be the next Mastermind ? ")
     pegs = dynamique.Pegs()
@@ -18,7 +14,7 @@ def main():
     win = False
     while (round_<13 and win is not True):
         print("\nROUND ", int(round_),"/ 12")
-        pegs.evolve(win)
+        win = pegs.evolve(win)
         round_ +=1
     if round_==13:
         rprint("[bold red]\nGAME OVER ![/bold red]")
