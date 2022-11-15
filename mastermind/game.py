@@ -1,5 +1,5 @@
 """
-The p
+The class Mastermind
 """
 from itertools import chain
 import random

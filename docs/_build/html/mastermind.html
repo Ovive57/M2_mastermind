@@ -1,0 +1,186 @@
+
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>mastermind package &#8212; Mastermind 2022 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Mastermind’s documentation!" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Mastermind’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mastermind 2022 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mastermind package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-mastermind">
+<span id="mastermind-package"></span><h1>mastermind package<a class="headerlink" href="#module-mastermind" title="Permalink to this heading">¶</a></h1>
+<p>Jeu du Mastermind</p>
+<section id="module-mastermind.game">
+<span id="mastermind-game-module"></span><h2>mastermind.game module<a class="headerlink" href="#module-mastermind.game" title="Permalink to this heading">¶</a></h2>
+<p>The class Mastermind</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="mastermind.game.Mastermind">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mastermind.game.</span></span><span class="sig-name descname"><span class="pre">Mastermind</span></span><a class="headerlink" href="#mastermind.game.Mastermind" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is the Mastermind class. Pegs and board definitions.</p>
+<p>Initialitation. Generate a 4-list with random colors.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="mastermind.game.Mastermind.entry">
+<span class="sig-name descname"><span class="pre">entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mastermind.game.Mastermind.entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the user input</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>entries(list): user chosen colors</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mastermind.game.Mastermind.comparaison">
+<span class="sig-name descname"><span class="pre">comparaison</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mastermind.game.Mastermind.comparaison" title="Permalink to this definition">¶</a></dt>
+<dd><p>Comparation between the computer sequence i.e the answer to find
+and the user sequence.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>seq(list): User choice</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>sol(list): 4-colors list:</dt><dd><p>black: if the user find a color in the right place
+white: if the user find a color but not in the right place
+‘.’: if the color chosen by the user is not in the computer sequence.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mastermind.game.Mastermind.fill_board">
+<span class="sig-name descname"><span class="pre">fill_board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix_response</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mastermind.game.Mastermind.fill_board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the turn in the board and print it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="mastermind.game.Mastermind.evolve">
+<span class="sig-name descname"><span class="pre">evolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">win</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#mastermind.game.Mastermind.evolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that keep the game runing until you win</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>win (bool): True if you have everything right</p>
+</dd>
+<dt>Returns:</dt><dd><p>win (bool): True if you have everything right</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">mastermind package</a><ul>
+<li><a class="reference internal" href="#module-mastermind.game">mastermind.game module</a><ul>
+<li><a class="reference internal" href="#mastermind.game.Mastermind"><code class="docutils literal notranslate"><span class="pre">Mastermind</span></code></a><ul>
+<li><a class="reference internal" href="#mastermind.game.Mastermind.entry"><code class="docutils literal notranslate"><span class="pre">Mastermind.entry()</span></code></a></li>
+<li><a class="reference internal" href="#mastermind.game.Mastermind.comparaison"><code class="docutils literal notranslate"><span class="pre">Mastermind.comparaison()</span></code></a></li>
+<li><a class="reference internal" href="#mastermind.game.Mastermind.fill_board"><code class="docutils literal notranslate"><span class="pre">Mastermind.fill_board()</span></code></a></li>
+<li><a class="reference internal" href="#mastermind.game.Mastermind.evolve"><code class="docutils literal notranslate"><span class="pre">Mastermind.evolve()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to Mastermind’s documentation!</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/mastermind.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Mastermind’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mastermind 2022 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mastermind package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Constance GANOT &amp; Olivia VIDAL VELAZQUEZ.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

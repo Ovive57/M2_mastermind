@@ -1,0 +1,201 @@
+
+
+<!doctype html>
+
+<html lang="python">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mastermind.game &#8212; Mastermind 2022 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/bizstyle.css" />
+    
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mastermind 2022 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mastermind.game</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for mastermind.game</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The class Mastermind</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="nb">print</span> <span class="k">as</span> <span class="n">rprint</span>
+
+<div class="viewcode-block" id="Mastermind"><a class="viewcode-back" href="../../mastermind.html#mastermind.game.Mastermind">[docs]</a><span class="k">class</span> <span class="nc">Mastermind</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class is the Mastermind class. Pegs and board definitions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pegs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;yellow&#39;</span><span class="p">:</span><span class="s1">&#39;[bold yellow]</span><span class="se">\u25CF</span><span class="s1">[/bold yellow]&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;blue&#39;</span><span class="p">:</span><span class="s1">&#39;[blue]</span><span class="se">\u25CF</span><span class="s1">[/blue]&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;red&#39;</span><span class="p">:</span><span class="s1">&#39;[bold red]</span><span class="se">\u25CF</span><span class="s1">[/bold red]&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;green&#39;</span><span class="p">:</span><span class="s1">&#39;[bold green]</span><span class="se">\u25CF</span><span class="s1">[/bold green]&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;purple&#39;</span><span class="p">:</span><span class="s1">&#39;[bold purple]</span><span class="se">\u25CF</span><span class="s1">[/bold purple]&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;orange&#39;</span><span class="p">:</span><span class="s1">&#39;[bold orange3]</span><span class="se">\u25CF</span><span class="s1">[/bold orange3]&#39;</span><span class="p">}</span>
+
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;black&#39;</span><span class="p">:</span><span class="s1">&#39;[black]</span><span class="se">\u25CF</span><span class="s1">[/black]&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;white&#39;</span><span class="p">:</span><span class="s1">&#39;[bold white]</span><span class="se">\u25CF</span><span class="s1">[/bold white]&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;nul&#39;</span><span class="p">:</span><span class="s1">&#39;.&#39;</span><span class="p">}</span>
+
+    <span class="n">board</span> <span class="o">=</span><span class="p">[]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialitation. Generate a 4-list with random colors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pegs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pegs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+        <span class="c1">#dictionary transformed in list :</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">([[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pegs</span><span class="o">.</span><span class="n">items</span><span class="p">()]))</span>
+
+<div class="viewcode-block" id="Mastermind.entry"><a class="viewcode-back" href="../../mastermind.html#mastermind.game.Mastermind.entry">[docs]</a>    <span class="k">def</span> <span class="nf">entry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Takes the user input</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            entries(list): user chosen colors</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">rprint</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter 4 colors among : &quot;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="p">))</span>
+        <span class="n">entries</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">,</span><span class="mf">0.</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="n">entries</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">color </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">entries</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You&#39;re writing nonsense ! Redo&quot;</span><span class="p">)</span>
+                <span class="n">entries</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;color </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="n">rprint</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pegs</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">entries</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">entries</span></div>
+
+<div class="viewcode-block" id="Mastermind.comparaison"><a class="viewcode-back" href="../../mastermind.html#mastermind.game.Mastermind.comparaison">[docs]</a>    <span class="k">def</span> <span class="nf">comparaison</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Comparation between the computer sequence i.e the answer to find</span>
+<span class="sd">        and the user sequence.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            seq(list): User choice</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            sol(list): 4-colors list:</span>
+<span class="sd">                black: if the user find a color in the right place</span>
+<span class="sd">                white: if the user find a color but not in the right place</span>
+<span class="sd">                &#39;.&#39;: if the color chosen by the user is not in the computer sequence.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">black</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">answer</span><span class="p">,</span><span class="n">seq</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span><span class="p">)</span>
+        <span class="c1">#indices associés:</span>
+        <span class="n">index_b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">index</span> <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="k">if</span> <span class="n">item</span><span class="o">==</span><span class="bp">self</span><span class="o">.</span><span class="n">answer</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+
+        <span class="c1">#Nouvelles matrices:</span>
+        <span class="n">seq2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">value</span> <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">index_b</span><span class="p">)</span>
+        <span class="n">answer2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">value</span> <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">index_b</span><span class="p">)</span>
+
+        <span class="c1">#liste des valeurs communes: (ne compte pas les doublons)</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">seq2</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">answer2</span><span class="p">))</span>
+
+        <span class="n">black</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">black</span><span class="p">)</span>
+        <span class="n">white</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+        <span class="n">nul</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-</span> <span class="n">black</span> <span class="o">-</span> <span class="n">white</span>
+        <span class="n">sol</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ans</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">]]</span><span class="o">*</span><span class="n">black</span><span class="o">+</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ans</span><span class="p">[</span><span class="s1">&#39;white&#39;</span><span class="p">]]</span><span class="o">*</span><span class="n">white</span><span class="o">+</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ans</span><span class="p">[</span><span class="s1">&#39;nul&#39;</span><span class="p">]]</span><span class="o">*</span><span class="n">nul</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sol</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sol</span></div>
+
+
+<div class="viewcode-block" id="Mastermind.fill_board"><a class="viewcode-back" href="../../mastermind.html#mastermind.game.Mastermind.fill_board">[docs]</a>    <span class="k">def</span> <span class="nf">fill_board</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new</span><span class="p">,</span> <span class="n">matrix_response</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add the turn in the board and print it</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">new</span><span class="p">,</span><span class="n">matrix_response</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The current board is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">round_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">:</span>
+            <span class="n">rprint</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">round_</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">round_</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span></div>
+
+
+<div class="viewcode-block" id="Mastermind.evolve"><a class="viewcode-back" href="../../mastermind.html#mastermind.game.Mastermind.evolve">[docs]</a>    <span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">win</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Function that keep the game runing until you win</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            win (bool): True if you have everything right</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            win (bool): True if you have everything right</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">attempt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="p">()</span>
+        <span class="n">color_try</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pegs</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">attempt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attempt</span><span class="p">))]</span>
+        <span class="n">matrix_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">comparaison</span><span class="p">(</span><span class="n">attempt</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fill_board</span><span class="p">(</span><span class="n">color_try</span><span class="p">,</span> <span class="n">matrix_response</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matrix_response</span> <span class="o">==</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ans</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">]]</span><span class="o">*</span><span class="mi">4</span><span class="p">:</span>
+            <span class="n">win</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">rprint</span><span class="p">(</span><span class="s2">&quot;[bold red] </span><span class="se">\n</span><span class="s2">YOU WIN ! YOU ARE THE MASTERMIND ![/bold red]&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">win</span></div></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">Mastermind 2022 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mastermind.game</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Constance GANOT &amp; Olivia VIDAL VELAZQUEZ.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>
