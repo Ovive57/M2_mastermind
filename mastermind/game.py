@@ -1,6 +1,12 @@
 """
 The class Mastermind
 """
+
+__all__ = ['version']
+
+version = "top-level module"
+
+
 from itertools import chain
 import random
 from rich import print as rprint
@@ -40,12 +46,14 @@ class Mastermind:
             entries(list): user chosen colors
         """
         rprint("\nEnter 4 colors among : ", ' '.join(self.list))
+        # Matrice avec une longueur = 4 à remplir par le joueur
         entries = [0.,0.,0.,0.]
         for i in range(4):
             entries[i] = input(f"\ncolor {i+1}:")
             while entries[i] not in self.names:
                 print("You're writing nonsense ! Redo")
                 entries[i] = input(f"color {i+1}:")
+            # Imprime la couleur de la boule à chaque itération
             rprint(self.pegs[f"{entries[i]}"])
         return entries
 
@@ -67,7 +75,7 @@ class Mastermind:
         #indices associés:
         index_b = list(index for (index, item) in enumerate(seq) if item==self.answer[index])
 
-        #Nouvelles matrices:
+        #Nouvelles matrices 'entry' et 'réponse' sans les boules pareilles:
         seq2 = list(value for (index, value) in enumerate(seq) if index not in index_b)
         answer2 = list(value for (index, value) in enumerate(self.answer) if index not in index_b)
 

@@ -3,7 +3,7 @@ setup.cfg
 setup.py
 mastermind/__init__.py
 mastermind/__main__.py
-mastermind/dynamique.py
+mastermind/game.py
 mastermind.egg-info/PKG-INFO
 mastermind.egg-info/SOURCES.txt
 mastermind.egg-info/dependency_links.txt
