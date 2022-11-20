@@ -1,15 +1,15 @@
 """
 The class Mastermind
 """
-
-__all__ = ['version']
-
-version = "top-level module"
-
-
-from itertools import chain
 import random
+from itertools import chain
 from rich import print as rprint
+
+__all__ = ['__version__']
+
+__version__ = "top-level module"
+
+
 
 class Mastermind:
     """

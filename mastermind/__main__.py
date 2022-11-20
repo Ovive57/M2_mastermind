@@ -21,7 +21,7 @@ def main():
         print("\nThe right answer was:")
         answer = [pegs.pegs[f'{pegs.answer[i]}']for i in range(len(pegs.answer))]
         rprint(' '.join(answer))
-
+    return win
 
 
 if __name__ == "__main__":

@@ -28,7 +28,7 @@ def test_version():
     """
     Teste la version du module
     """
-    assert game.version == "top-level module"
+    assert game.__version__ == "top-level module"
     
     
 def test_init():
