@@ -86,6 +86,7 @@ class Mastermind:
         white = len(vals)
         nul = len(seq) - black - white
         sol = [self.ans['black']]*black+[self.ans['white']]*white+[self.ans['nul']]*nul
+        random.seed(0) #Pour les tests, ne change pas la difficulté du jeu
         random.shuffle(sol)
         return sol
 

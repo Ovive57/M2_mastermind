@@ -46,6 +46,9 @@ def test_init():
                         ]
                         )
 def test_entry(monkeypatch, capsys, expected_output):
+    """
+    Teste la forme de l'output
+    """
     import builtins
     monkeypatch.setattr(builtins, 'input', lambda _: names[0])
 
@@ -79,36 +82,34 @@ def test_entry(monkeypatch, capsys, expected_output):
     
     
     
-@pytest.mark.parametrize("test_input, expected_output",
+@pytest.mark.parametrize("test_input_black, expected_output_black, \
+                        test_input_white, expected_output_white",
                         [
                             # Teste pour tout correct
                             (['blue', 'blue', 'blue', 'blue'], 
-                            ['[black]\u25CF[/black]', '[black]\u25CF[/black]', '[black]\u25CF[/black]', '[black]\u25CF[/black]'])
+                            ['[black]\u25CF[/black]', '[black]\u25CF[/black]', '[black]\u25CF[/black]', '[black]\u25CF[/black]'],
+                            # Teste pour bon mais pas à la bonne place
+                            ['orange', 'red', 'blue', 'red'],
+                            ['[bold white]\u25CF[/bold white]','.', '.', '.'])
                         ])
-def test_comparaison_black(test_input, expected_output):
+def test_comparaison(monkeypatch, test_input_black, expected_output_black, 
+                    test_input_white, expected_output_white):
     """
-    Teste une combinaison correcte
+    Teste une combinaison 
+    - tout est correct
+    - deux sont bons mais pas à la bonne place
     """
     pegs.answer = ['blue', 'blue', 'blue', 'blue']
-    assert pegs.comparaison(test_input) == expected_output
+    assert pegs.comparaison(test_input_black) == expected_output_black
     
-"""
-@pytest.mark.parametrize("test_input",
-                        [
-                        (['green', 'orange', 'red', 'red'])
-                        ])
-def test_comparaison_white(monkeypatch, test_input):
-    random.seed(0)
+    seed = 0
+    inputs = iter(test_input_white)
+    monkeypatch.setattr(builtins, 'input', lambda _: next(inputs))
+    random.seed(seed)
+    random.shuffle(expected_output_white)
     pegs.answer = ['blue', 'blue', 'green', 'green']
-    expected_output = ['[bold white]\u25CF[/bold white]','[bold white]\u25CF[/bold white]', '.', '.']
-    
-    inputs2 = iter(['blue', 'blue', 'blue', 'blue'])
-    monkeypatch.setattr(builtins, 'input', lambda _: next(inputs2))
-    
-    expected_output = random.shuffle(expected_output)
-    assert pegs.comparaison(test_input) == expected_output
+    assert pegs.comparaison(test_input_white) == expected_output_white
 
-"""
 
 @pytest.mark.parametrize("test_input",
                         [
