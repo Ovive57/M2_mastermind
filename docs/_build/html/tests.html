@@ -1,0 +1,211 @@
+
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>mastermind tests &#8212; Mastermind 2022 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="main" href="main.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="main"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mastermind 2022 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mastermind tests</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="mastermind-tests">
+<h1>mastermind tests<a class="headerlink" href="#mastermind-tests" title="Permalink to this heading">¶</a></h1>
+<section id="module-tests.test_game">
+<span id="game-tests"></span><h2>Game tests<a class="headerlink" href="#module-tests.test_game" title="Permalink to this heading">¶</a></h2>
+<p>Module de tests</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_version">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la version du module</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_init">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vérifie les listes et la liste de 4 couleurs aléatoires.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_entry_form">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_entry_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capsys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_entry_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste la forme de l’output</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_entry">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste une entrée où le joueur:
+1. a bien répondu
+2. s’est trompé et a réécrit</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_comparaison">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_comparaison</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_input_black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_output_black</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_input_white</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_output_white</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_input_wrong</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected_output_wrong</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_comparaison" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste une combinaison
+- tout est correct
+- deux sont bons mais pas à la bonne place</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_comparaison_len_type">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_comparaison_len_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_input</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_comparaison_len_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifie la taille et le type de la variable retournée par comparaison.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_fill_board">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_fill_board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capfd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_input_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_input_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_fill_board" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste le output</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_fill_board_args">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_fill_board_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_input</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_fill_board_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste les cas où:
+- il manque les arguments
+- le type des arguments ne convient pas
+- le nombre d’argument ne convient pas</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_evolve">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_evolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_input</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_evolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste les cas où:
+- il manque les arguments
+- le nombre d’argument ne convient pas</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_evolve_form">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_evolve_form</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_evolve_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Teste une partie gagnée</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tests.test_game.test_main">
+<span class="sig-prename descclassname"><span class="pre">tests.test_game.</span></span><span class="sig-name descname"><span class="pre">test_main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.test_game.test_main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test la fin du jeu.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">mastermind tests</a><ul>
+<li><a class="reference internal" href="#module-tests.test_game">Game tests</a><ul>
+<li><a class="reference internal" href="#tests.test_game.test_version"><code class="docutils literal notranslate"><span class="pre">test_version()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_init"><code class="docutils literal notranslate"><span class="pre">test_init()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_entry_form"><code class="docutils literal notranslate"><span class="pre">test_entry_form()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_entry"><code class="docutils literal notranslate"><span class="pre">test_entry()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_comparaison"><code class="docutils literal notranslate"><span class="pre">test_comparaison()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_comparaison_len_type"><code class="docutils literal notranslate"><span class="pre">test_comparaison_len_type()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_fill_board"><code class="docutils literal notranslate"><span class="pre">test_fill_board()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_fill_board_args"><code class="docutils literal notranslate"><span class="pre">test_fill_board_args()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_evolve"><code class="docutils literal notranslate"><span class="pre">test_evolve()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_evolve_form"><code class="docutils literal notranslate"><span class="pre">test_evolve_form()</span></code></a></li>
+<li><a class="reference internal" href="#tests.test_game.test_main"><code class="docutils literal notranslate"><span class="pre">test_main()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="main.html"
+                          title="previous chapter">main</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/tests.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="main"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mastermind 2022 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mastermind tests</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Constance GANOT &amp; Olivia VIDAL VELAZQUEZ.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

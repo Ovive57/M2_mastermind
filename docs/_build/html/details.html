@@ -1,0 +1,455 @@
+
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Packaging (setup.cfg) &#8212; Mastermind 2022 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bizstyle.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="‘__main__.py’" href="__main__.html" />
+    <link rel="prev" title="Install the package" href="intro.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="__main__.html" title="‘__main__.py’"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Install the package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mastermind 2022 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Packaging (<cite>setup.cfg</cite>)</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="packaging-setup-cfg">
+<h1>Packaging (<cite>setup.cfg</cite>)<a class="headerlink" href="#packaging-setup-cfg" title="Permalink to this heading">¶</a></h1>
+<p>The <a class="reference internal" href="setup.html#setup-cfg"><span class="std std-ref">setup.cfg</span></a> allows for easy packaging and installation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pip install git+https://gitlab.in2p3.fr/constance.ganot/mastermind.git
+</pre></div>
+</div>
+<p>or through the complete cloning of the gitlab repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://gitlab.in2p3.fr/constance.ganot/mastermind  # cloning
+$ cd mastermind
+$ pip install .                                  # local installation
+</pre></div>
+</div>
+</section>
+<section id="package-initialization-init-py">
+<h1>Package initialization (<cite>__init__.py</cite>)<a class="headerlink" href="#package-initialization-init-py" title="Permalink to this heading">¶</a></h1>
+<p>The <cite>__init__.py</cite> file in each package directory describes the
+initialization of the package, i.e. the actions (usually imports, but
+also definitions, etc.) to be performed at package import.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">mastermind</span>  <span class="c1"># Will run mastermind/__init__.py and all subsequent initializations</span>
+<span class="go">Initialization top-level module</span>
+</pre></div>
+</div>
+</section>
+<section id="main-entries-main-py">
+<h1>Main entries (<cite>__main__.py</cite>)<a class="headerlink" href="#main-entries-main-py" title="Permalink to this heading">¶</a></h1>
+<p>The <em>main</em> program can be called in different ways:</p>
+<ul>
+<li><p>as the <a class="reference internal" href="__main__.html#main-py"><span class="std std-ref">__main__.py</span></a> entry of a module, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m mastermind     # Execute top-level pyyc/__main__.py
+Initialization top-level module
+---------------------- MAIN ----------------------
+</pre></div>
+</div>
+<p>There can be only <em>one</em> package main, corresponding to the <cite>if
+__name == “__main__”</cite> part of the <cite>__main__.py</cite> file.</p>
+</li>
+<li><p>as console scripts defined as <em>entry points</em> in <a class="reference internal" href="setup.html#setup-cfg"><span class="std std-ref">setup.cfg</span></a>:</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[metadata]</span><span class="w"></span>
+<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mastermind</span><span class="w"></span>
+<span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">attr: mastermind.__version__</span><span class="w"></span>
+<span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Jeu du Mastermind</span><span class="w"></span>
+<span class="na">long_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file: README.rst</span><span class="w"></span>
+<span class="na">long_description_content_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">text/x-rst</span><span class="w"></span>
+<span class="na">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Constance GANOT and Olivia VIDAL VELAZQUEZ</span><span class="w"></span>
+<span class="na">author_email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">constance.ganot@etu.univ-lyon1.fr and olivia.vidal-velazquez@etu.univ-lyon1.fr</span><span class="w"></span>
+<span class="na">license</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">LGPL v3.0</span><span class="w"></span>
+<span class="na">license_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">LICENSE</span><span class="w"></span>
+<span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://gitlab.in2p3.fr/constance.ganot/mastermind</span><span class="w"></span>
+<span class="na">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">game , mastermind</span><span class="w"></span>
+<span class="na">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">Development Status :: 2 - Pre-Alpha</span><span class="w"></span>
+<span class="w">    </span><span class="na">Intended Audience :: Science/Gamers</span><span class="w"></span>
+<span class="w">    </span><span class="na">License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)</span><span class="w"></span>
+<span class="w">    </span><span class="na">Programming Language :: Python :: 3</span><span class="w"></span>
+<span class="w">    </span><span class="na">Topic :: Scientific/Engineering :: Game</span><span class="w"></span>
+
+<span class="k">[options]</span><span class="w"></span>
+<span class="na">zip_safe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span><span class="w"></span>
+<span class="na">include_package_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"></span>
+<span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
+<span class="na">python_requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&gt;=3.6</span><span class="w"></span>
+<span class="na">install_requires</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">rich</span><span class="w"></span>
+
+<span class="k">[options.package_data]</span><span class="w"></span>
+<span class="na">*</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">config/*</span><span class="w"></span>
+
+<span class="k">[options.extras_require]</span><span class="w"></span>
+<span class="na">docs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">nbsphinx; ipython</span><span class="w"></span>
+<span class="na">mcmc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">emcee; corner</span><span class="w"></span>
+<span class="na">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mpld3</span><span class="w"></span>
+<span class="na">tests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">pytest; coverage</span><span class="w"></span>
+
+<span class="k">[build_sphinx]</span><span class="w"></span>
+<span class="na">source-dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">docs/</span><span class="w"></span>
+<span class="na">build-dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">docs/_build</span><span class="w"></span>
+<span class="na">all_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+
+<span class="k">[options.entry_points]</span><span class="w"></span>
+<span class="na">console_scripts</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># le script myscript correspond à la fonction main()</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># du fichier mastermind/__main__.py</span><span class="w"></span>
+<span class="w">    </span><span class="na">myscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mastermind.__main__:main</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h1>
+<p>The sample code is documented using the documentation generator <cite>sphinx</cite>
+within the dedicated directory <cite>docs/</cite>, typically for a first use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[docs/]$ sphinx-quickstart  # initiate the documentation tool
+[docs/]$ # edit &#39;conf.py&#39; to your needs (see below)
+[docs/]$ sphinx-apidoc -o . ../pyyc  # automatic generation of documentation files
+Creating file ./mastermind.rst.
+[docs/]$ # include these documentation files in &#39;index.rst&#39; (see below)
+[docs/]$ make html          # build the documentation as a website
+[docs/]$ firefox _build/html/index.html
+</pre></div>
+</div>
+<section id="conf-py">
+<h2><cite>conf.py</cite><a class="headerlink" href="#conf-py" title="Permalink to this heading">¶</a></h2>
+<p>In particular, the use of the auto-documentation extension <cite>sphinx.ext.autodoc</cite>
+requires few non-trivial lines in <a class="reference internal" href="conf.html#conf-py"><span class="std std-ref">conf.py</span></a>:</p>
+<ul>
+<li><p>set-up the path to code sources for extraction of docstrings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration file for the Sphinx documentation builder.</span>
+<span class="c1">#</span>
+<span class="c1"># For the full list of built-in configuration values, see the documentation:</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html</span>
+
+<span class="c1"># -- Path setup --------------------------------------------------------------</span>
+
+<span class="c1"># If extensions (or modules to document with autodoc) are in another directory,</span>
+<span class="c1"># add these directories to sys.path here. If the directory is relative to the</span>
+<span class="c1"># documentation root, use os.path.abspath to make it absolute, like shown here.</span>
+<span class="c1">#</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">))</span>
+
+<span class="kn">import</span> <span class="nn">mastermind</span>
+
+<span class="c1"># -- Project information -----------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;Mastermind&#39;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s1">&#39;2022, Constance GANOT &amp; Olivia VIDAL VELAZQUEZ&#39;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s1">&#39;Constance GANOT &amp; Olivia VIDAL VELAZQUEZ&#39;</span>
+<span class="n">release</span> <span class="o">=</span> <span class="s1">&#39;2022&#39;</span>
+
+<span class="c1"># -- General configuration ---------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration</span>
+<span class="c1"># Add any Sphinx extension module names here, as strings. They can be</span>
+<span class="c1"># extensions coming with Sphinx (named &#39;sphinx.ext.*&#39;) or your custom</span>
+<span class="c1"># ones.</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="c1"># Standard extensions</span>
+    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>       <span class="c1"># automatic documentation</span>
+    <span class="s1">&#39;sphinx.ext.autosummary&#39;</span><span class="p">,</span>   <span class="c1"># automatic summary</span>
+    <span class="c1">#&#39;sphinx.ext.mathjax&#39;,       # (or pngmath) support for equations</span>
+    <span class="c1">#&#39;sphinx.ext.viewcode&#39;,      # link to code source</span>
+    <span class="c1">#&#39;sphinx.ext.extlinks&#39;,      # support for external links</span>
+    <span class="c1">#&#39;sphinx.ext.autosectionlabel&#39;,  # automatic section label</span>
+    <span class="c1">#&#39;sphinx.ext.coverage&#39;,      # documentation coverage</span>
+    <span class="c1"># &#39;matplotlib.sphinxext.plot_directive&#39;,  # support for embedded plots</span>
+    <span class="c1"># &#39;sphinx-git&#39;,  # create a changelog from git history</span>
+<span class="p">]</span>
+
+<span class="c1"># Autodoc configuration</span>
+<span class="n">autodoc_default_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;members&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>            <span class="c1"># Document all members</span>
+    <span class="s1">&#39;undoc-members&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>      <span class="c1"># ... including undocumented ones</span>
+    <span class="s1">&#39;ignore-module-all&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># do not stick to __all__</span>
+<span class="p">}</span>
+
+<span class="n">autoclass_content</span> <span class="o">=</span> <span class="s2">&quot;both&quot;</span>              <span class="c1"># Insert class and __init__ docstrings</span>
+<span class="n">autodoc_member_order</span> <span class="o">=</span> <span class="s2">&quot;bysource&quot;</span>       <span class="c1"># Keep source order</span>
+
+
+<span class="n">extlinks</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;pypi&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;https://pypi.org/project/</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="p">}</span>
+<span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_templates&#39;</span><span class="p">]</span>
+<span class="c1">#exclude_patterns = [&#39;_build&#39;, &#39;Thumbs.db&#39;, &#39;.DS_Store&#39;]</span>
+
+<span class="c1">#language = &#39;python&#39;</span>
+
+<span class="c1"># -- Options for HTML output -------------------------------------------------</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output</span>
+
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;bizstyle&#39;</span>
+<span class="c1">#html_static_path = [&#39;_static&#39;]</span>
+<span class="n">master_doc</span> <span class="o">=</span> <span class="s1">&#39;index&#39;</span>
+<span class="n">langage</span> <span class="o">=</span> <span class="s1">&#39;en&#39;</span>
+
+
+<span class="c1"># If true, links to the reST sources are added to the pages.</span>
+<span class="c1">#html_show_sourcelink = True</span>
+
+</pre></div>
+</div>
+</li>
+<li><p>add <cite>sphinx.ext.autodoc</cite> in the list of sphinx extensions <cite>extensions =
+[…]</cite></p></li>
+<li><p>configure the <cite>autodoc</cite> extension:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Autodoc configuration</span>
+<span class="n">autodoc_default_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;members&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>            <span class="c1"># Document all members</span>
+    <span class="s1">&#39;undoc-members&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>      <span class="c1"># ... including undocumented ones</span>
+    <span class="s1">&#39;ignore-module-all&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># do not stick to __all__</span>
+<span class="p">}</span>
+
+<span class="n">autoclass_content</span> <span class="o">=</span> <span class="s2">&quot;both&quot;</span>              <span class="c1"># Insert class and __init__ docstrings</span>
+<span class="n">autodoc_member_order</span> <span class="o">=</span> <span class="s2">&quot;bysource&quot;</span>       <span class="c1"># Keep source order</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="index-rst">
+<h2><cite>index.rst</cite><a class="headerlink" href="#index-rst" title="Permalink to this heading">¶</a></h2>
+<p>The <cite>index.rst</cite> file is the top-level documentation file, which will include
+links to all the other documentation <cite>.rst</cite> files under the specific
+<cite>.. toctree::</cite> command, e.g.:</p>
+<div class="highlight-rest notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:caption:</span> Code documentation
+   <span class="nc">:titlesonly:</span>
+
+   mastermind
+</pre></div>
+</div>
+</section>
+<section id="setup-cfg">
+<h2><cite>setup.cfg</cite><a class="headerlink" href="#setup-cfg" title="Permalink to this heading">¶</a></h2>
+<p>The packaging configuration of the documentation is controlled by
+dedicated sections in <a class="reference internal" href="setup.html#setup-cfg"><span class="std std-ref">setup.cfg</span></a>:</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[metadata]</span><span class="w"></span>
+<span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mastermind</span><span class="w"></span>
+<span class="na">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">attr: mastermind.__version__</span><span class="w"></span>
+<span class="na">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Jeu du Mastermind</span><span class="w"></span>
+<span class="na">long_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">file: README.rst</span><span class="w"></span>
+<span class="na">long_description_content_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">text/x-rst</span><span class="w"></span>
+<span class="na">author</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Constance GANOT and Olivia VIDAL VELAZQUEZ</span><span class="w"></span>
+<span class="na">author_email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">constance.ganot@etu.univ-lyon1.fr and olivia.vidal-velazquez@etu.univ-lyon1.fr</span><span class="w"></span>
+<span class="na">license</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">LGPL v3.0</span><span class="w"></span>
+<span class="na">license_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">LICENSE</span><span class="w"></span>
+<span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://gitlab.in2p3.fr/constance.ganot/mastermind</span><span class="w"></span>
+<span class="na">keywords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">game , mastermind</span><span class="w"></span>
+<span class="na">classifiers</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">Development Status :: 2 - Pre-Alpha</span><span class="w"></span>
+<span class="w">    </span><span class="na">Intended Audience :: Science/Gamers</span><span class="w"></span>
+<span class="w">    </span><span class="na">License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)</span><span class="w"></span>
+<span class="w">    </span><span class="na">Programming Language :: Python :: 3</span><span class="w"></span>
+<span class="w">    </span><span class="na">Topic :: Scientific/Engineering :: Game</span><span class="w"></span>
+
+<span class="k">[options]</span><span class="w"></span>
+<span class="na">zip_safe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">False</span><span class="w"></span>
+<span class="na">include_package_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">True</span><span class="w"></span>
+<span class="na">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">find:</span><span class="w"></span>
+<span class="na">python_requires</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&gt;=3.6</span><span class="w"></span>
+<span class="na">install_requires</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="na">rich</span><span class="w"></span>
+
+<span class="k">[options.package_data]</span><span class="w"></span>
+<span class="na">*</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">config/*</span><span class="w"></span>
+
+<span class="k">[options.extras_require]</span><span class="w"></span>
+<span class="na">docs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">nbsphinx; ipython</span><span class="w"></span>
+<span class="na">mcmc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">emcee; corner</span><span class="w"></span>
+<span class="na">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mpld3</span><span class="w"></span>
+<span class="na">tests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">pytest; coverage</span><span class="w"></span>
+
+<span class="k">[build_sphinx]</span><span class="w"></span>
+<span class="na">source-dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">docs/</span><span class="w"></span>
+<span class="na">build-dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">docs/_build</span><span class="w"></span>
+<span class="na">all_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"></span>
+
+<span class="k">[options.entry_points]</span><span class="w"></span>
+<span class="na">console_scripts</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># le script myscript correspond à la fonction main()</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># du fichier mastermind/__main__.py</span><span class="w"></span>
+<span class="w">    </span><span class="na">myscript</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">mastermind.__main__:main</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This adds a new command in the <cite>setup.py</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python setup.py build_sphinx
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With the current configuration <a class="reference internal" href="setup.html#setup-cfg"><span class="std std-ref">setup.cfg</span></a> (considered
+deprecated for tests), it is not possible to run the tests directly from
+<cite>setup.py</cite>. It is therefore necessary to run the tests manually.</p>
+</div>
+<section id="dedicated-tests">
+<h2>Dedicated tests<a class="headerlink" href="#dedicated-tests" title="Permalink to this heading">¶</a></h2>
+<p>Tests gathered in the <cite>tests/</cite> directory shall be performed using
+<cite>pytest</cite>, e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[tests/]$ pytest -v test_game.py
+</pre></div>
+</div>
+<p><cite>pytest</cite> will actually auto-discover all the tests from top-level directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pytest
+</pre></div>
+</div>
+</section>
+<section id="test-coverage">
+<h2>Test coverage<a class="headerlink" href="#test-coverage" title="Permalink to this heading">¶</a></h2>
+<p><cite>coverage</cite> will run the test suite and look for parts of the code which
+have been (and more importantly <em>not been</em>) tested.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ coverage run -m pytest
+$ coverage report
+Name                     Stmts   Miss  Cover
+--------------------------------------------
+mastermind/__init__.py       5      0   100%
+mastermind/__main__.py      19      1    95%
+mastermind/game.py          51      0   100%
+tests/__init__.py            0      0   100%
+tests/test_game.py          75      0   100%
+--------------------------------------------
+TOTAL                      150      1    99%
+</pre></div>
+</div>
+<p>To visualize which parts of the code is documented or not:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ coverage html
+Wrote HTML report to htmlcov/index.html
+$ firefox htmlcov/index.html
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Packaging (<cite>setup.cfg</cite>)</a></li>
+<li><a class="reference internal" href="#package-initialization-init-py">Package initialization (<cite>__init__.py</cite>)</a></li>
+<li><a class="reference internal" href="#main-entries-main-py">Main entries (<cite>__main__.py</cite>)</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li><a class="reference internal" href="#conf-py"><cite>conf.py</cite></a></li>
+<li><a class="reference internal" href="#index-rst"><cite>index.rst</cite></a></li>
+<li><a class="reference internal" href="#setup-cfg"><cite>setup.cfg</cite></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing">Testing</a><ul>
+<li><a class="reference internal" href="#dedicated-tests">Dedicated tests</a></li>
+<li><a class="reference internal" href="#test-coverage">Test coverage</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="intro.html"
+                          title="previous chapter">Install the package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="__main__.html"
+                          title="next chapter">‘__main__.py’</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/details.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="__main__.html" title="‘__main__.py’"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Install the package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Mastermind 2022 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Packaging (<cite>setup.cfg</cite>)</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, Constance GANOT &amp; Olivia VIDAL VELAZQUEZ.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+  </body>
+</html>

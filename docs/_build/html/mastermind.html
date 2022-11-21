@@ -20,6 +20,7 @@
     <script src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="How to play" href="howtoplay.html" />
     <link rel="prev" title="Welcome to Mastermind’s documentation!" href="index.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
@@ -35,6 +36,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="howtoplay.html" title="How to play"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to Mastermind’s documentation!"
              accesskey="P">previous</a> |</li>
@@ -59,6 +63,21 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">mastermind.game.</span></span><span class="sig-name descname"><span class="pre">Mastermind</span></span><a class="headerlink" href="#mastermind.game.Mastermind" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class is the Mastermind class. Pegs and board definitions.</p>
 <p>Initialitation. Generate a 4-list with random colors.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mastermind.game.Mastermind.pegs">
+<span class="sig-name descname"><span class="pre">pegs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'blue':</span> <span class="pre">'[blue]●[/blue]',</span> <span class="pre">'green':</span> <span class="pre">'[bold</span> <span class="pre">green]●[/bold</span> <span class="pre">green]',</span> <span class="pre">'orange':</span> <span class="pre">'[bold</span> <span class="pre">orange3]●[/bold</span> <span class="pre">orange3]',</span> <span class="pre">'purple':</span> <span class="pre">'[bold</span> <span class="pre">purple]●[/bold</span> <span class="pre">purple]',</span> <span class="pre">'red':</span> <span class="pre">'[bold</span> <span class="pre">red]●[/bold</span> <span class="pre">red]',</span> <span class="pre">'yellow':</span> <span class="pre">'[bold</span> <span class="pre">yellow]●[/bold</span> <span class="pre">yellow]'}</span></em><a class="headerlink" href="#mastermind.game.Mastermind.pegs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mastermind.game.Mastermind.ans">
+<span class="sig-name descname"><span class="pre">ans</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'black':</span> <span class="pre">'[black]●[/black]',</span> <span class="pre">'nul':</span> <span class="pre">'.',</span> <span class="pre">'white':</span> <span class="pre">'[bold</span> <span class="pre">white]●[/bold</span> <span class="pre">white]'}</span></em><a class="headerlink" href="#mastermind.game.Mastermind.ans" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="mastermind.game.Mastermind.board">
+<span class="sig-name descname"><span class="pre">board</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#mastermind.game.Mastermind.board" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="mastermind.game.Mastermind.entry">
 <span class="sig-name descname"><span class="pre">entry</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mastermind.game.Mastermind.entry" title="Permalink to this definition">¶</a></dt>
@@ -123,6 +142,9 @@ white: if the user find a color but not in the right place
 <li><a class="reference internal" href="#">mastermind package</a><ul>
 <li><a class="reference internal" href="#module-mastermind.game">mastermind.game module</a><ul>
 <li><a class="reference internal" href="#mastermind.game.Mastermind"><code class="docutils literal notranslate"><span class="pre">Mastermind</span></code></a><ul>
+<li><a class="reference internal" href="#mastermind.game.Mastermind.pegs"><code class="docutils literal notranslate"><span class="pre">Mastermind.pegs</span></code></a></li>
+<li><a class="reference internal" href="#mastermind.game.Mastermind.ans"><code class="docutils literal notranslate"><span class="pre">Mastermind.ans</span></code></a></li>
+<li><a class="reference internal" href="#mastermind.game.Mastermind.board"><code class="docutils literal notranslate"><span class="pre">Mastermind.board</span></code></a></li>
 <li><a class="reference internal" href="#mastermind.game.Mastermind.entry"><code class="docutils literal notranslate"><span class="pre">Mastermind.entry()</span></code></a></li>
 <li><a class="reference internal" href="#mastermind.game.Mastermind.comparaison"><code class="docutils literal notranslate"><span class="pre">Mastermind.comparaison()</span></code></a></li>
 <li><a class="reference internal" href="#mastermind.game.Mastermind.fill_board"><code class="docutils literal notranslate"><span class="pre">Mastermind.fill_board()</span></code></a></li>
@@ -140,6 +162,11 @@ white: if the user find a color but not in the right place
     <h4>Previous topic</h4>
     <p class="topless"><a href="index.html"
                           title="previous chapter">Welcome to Mastermind’s documentation!</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="howtoplay.html"
+                          title="next chapter">How to play</a></p>
   </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
@@ -171,6 +198,9 @@ white: if the user find a color but not in the right place
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="howtoplay.html" title="How to play"
+             >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to Mastermind’s documentation!"
              >previous</a> |</li>

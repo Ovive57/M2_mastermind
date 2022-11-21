@@ -12,6 +12,52 @@ Welcome to Mastermind's documentation!
 
    mastermind
 
+.. toctree::
+    :caption: Rules:
+
+    howtoplay
+
+Quick introduction
+==================
+
+.. toctree::
+
+   intro
+
+Detailed documentation
+======================
+
+.. toctree::
+
+   details
+
+.. toctree::
+   :hidden:
+
+   __main__
+   setup
+   conf
+
+Code documentation
+==================
+
+.. toctree::
+   :caption: Packages and modules
+
+   mastermind
+
+.. toctree::
+   :titlesonly:
+   :caption: Main entries
+
+   main
+
+.. toctree::
+   :titlesonly:
+   :caption: Tests
+
+   tests
+
 
 Indices and tables
 ==================
