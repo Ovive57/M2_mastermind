@@ -44,13 +44,17 @@ extensions = [# Standard extensions
 # Autodoc configuration
 autodoc_default_options = {
     'members': True,            # Document all members
-    #'undoc-members': True,      # ... including undocumented ones
-    #'ignore-module-all': True,  # do not stick to __all__
+    'undoc-members': True,      # ... including undocumented ones
+    'ignore-module-all': True,  # do not stick to __all__
 }
 
 autoclass_content = "both"              # Insert class and __init__ docstrings
 autodoc_member_order = "bysource"       # Keep source order
 
+
+extlinks = {
+    'pypi': ('https://pypi.org/project/%s', '%s'),
+}
 templates_path = ['_templates']
 #exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
@@ -60,7 +64,7 @@ templates_path = ['_templates']
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'bizstyle'
-html_static_path = ['_static']
+#html_static_path = ['_static']
 master_doc = 'index'
 langage = 'en'
 
